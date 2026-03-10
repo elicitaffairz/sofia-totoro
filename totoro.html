@@ -21,11 +21,12 @@
     --shadow:   rgba(74,124,89,0.18);
     --text:     #3a3028;
     --text2:    #6b5a45;
-    --panel-w:  320px;
     --tab-w:    36px;
   }
 
-  body {
+  html, body {
+    width: 100%;
+    height: 100%;
     font-family: 'Nunito', sans-serif;
     background: transparent;
     overflow: hidden;
@@ -36,21 +37,18 @@
     cursor: url('data:image/png;base64,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') 16 16, auto !important;
   }
 
-  /* ── PANEL ─────────────────────────────────────── */
+  /* ── PANEL — fills entire window ───────────────── */
   #panel {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100vw;
     height: 100vh;
-    width: var(--panel-w);
     background: var(--cream);
-    border-radius: 0 16px 16px 0;
-    box-shadow: 4px 0 32px var(--shadow), 2px 0 8px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
     z-index: 999999;
-    border-right: 2px solid var(--green3);
     overflow: hidden;
   }
 
@@ -66,7 +64,7 @@
   }
 
   #panel.collapsed {
-    transform: translateX(calc(-1 * var(--panel-w)));
+    transform: translateX(-100vw);
   }
 
   /* ── TAB TOGGLE ────────────────────────────────── */
@@ -92,9 +90,8 @@
   }
   #toggle-tab:hover { background: var(--green2); }
 
-  /* When panel is open, push tab to the right edge of the panel */
   #toggle-tab.open {
-    left: calc(var(--panel-w) - 2px);
+    left: calc(100vw - 2px);
   }
 
   /* ── HEADER ─────────────────────────────────────── */
@@ -114,13 +111,13 @@
 
   .app-title {
     font-family: 'Caveat', cursive;
-    font-size: 26px;
+    font-size: 34px;
     font-weight: 700;
     color: var(--green1);
     line-height: 1;
   }
   .app-subtitle {
-    font-size: 11px;
+    font-size: 14px;
     color: var(--text2);
     font-weight: 500;
     letter-spacing: 0.3px;
@@ -142,30 +139,30 @@
     transition: width 0.5s ease;
   }
   .progress-label {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--text2);
     text-align: right;
     font-weight: 600;
   }
   .totoro-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
   }
 
   /* ── STATUS LEGEND ───────────────────────────────── */
   .status-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 6px;
     margin-top: 10px;
   }
   .legend-dot {
     display: flex;
     align-items: center;
     gap: 3px;
-    font-size: 10px;
+    font-size: 13px;
     color: var(--text2);
     font-weight: 600;
   }
@@ -183,7 +180,7 @@
   #task-list {
     flex: 1;
     overflow-y: auto;
-    padding: 4px 10px 8px;
+    padding: 4px 14px 8px;
     position: relative;
     z-index: 1;
     scrollbar-width: thin;
@@ -194,20 +191,19 @@
 
   .empty-state {
     text-align: center;
-    padding: 30px 10px;
+    padding: 40px 10px;
     color: var(--dust);
     font-family: 'Caveat', cursive;
-    font-size: 25px;
+    font-size: 22px;
   }
-  .empty-state span { display: block; font-size: 36px; margin-bottom: 6px; }
 
   /* ── TASK ITEM ───────────────────────────────────── */
   .task-item {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    padding: 9px 10px;
-    margin: 4px 0;
+    padding: 10px 12px;
+    margin: 5px 0;
     background: var(--green5);
     border-radius: 12px;
     border-left: 4px solid var(--green3);
@@ -229,11 +225,11 @@
   .task-item[data-priority="medium"] { border-left-color: #ffd06a; }
   .task-item[data-priority="low"]    { border-left-color: var(--green2); }
 
-  .drag-handle { color: var(--dust); font-size: 14px; padding-top: 1px; flex-shrink: 0; user-select: none; }
+  .drag-handle { color: var(--dust); font-size: 14px; padding-top: 2px; flex-shrink: 0; user-select: none; }
   .task-body   { flex: 1; min-width: 0; }
 
   .task-text {
-    font-size: 13px; color: var(--text); font-weight: 500;
+    font-size: 16px; color: var(--text); font-weight: 500;
     line-height: 1.4; word-break: break-word; margin-bottom: 5px;
   }
   .task-text.done-text { text-decoration: line-through; color: var(--dust); }
@@ -242,7 +238,7 @@
 
   /* ── STATUS BADGE ─────────────────────────────────── */
   .status-badge {
-    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    font-size: 13px; font-weight: 700; padding: 3px 10px;
     border-radius: 20px; transition: opacity 0.2s;
     white-space: nowrap; user-select: none; letter-spacing: 0.3px;
   }
@@ -255,7 +251,7 @@
   .status-cancelled  { background: #f8d7da; color: #b82c3a; }
 
   /* ── PRIORITY DOT ─────────────────────────────────── */
-  .priority-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .priority-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
   .priority-dot.high   { background: #e05c5c; }
   .priority-dot.medium { background: #e0a830; }
   .priority-dot.low    { background: var(--green2); }
@@ -263,21 +259,21 @@
   /* ── TASK ACTIONS ─────────────────────────────────── */
   .task-actions { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
   .icon-btn {
-    background: none; border: none; font-size: 13px; padding: 2px;
+    background: none; border: none; font-size: 14px; padding: 3px;
     border-radius: 4px; opacity: 0.45; transition: opacity 0.2s, background 0.2s; line-height: 1;
   }
   .icon-btn:hover { opacity: 1; background: var(--cream2); }
 
   /* ── ADD TASK AREA ────────────────────────────────── */
   #add-area {
-    padding: 10px 14px 14px; position: relative; z-index: 1;
+    padding: 10px 16px 14px; position: relative; z-index: 1;
     flex-shrink: 0; background: var(--cream);
   }
-  .add-input-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .add-input-row { display: flex; gap: 8px; margin-bottom: 8px; }
 
   #new-task-input {
-    flex: 1; padding: 8px 12px; border: 1.5px solid var(--green3);
-    border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 13px;
+    flex: 1; padding: 10px 14px; border: 1.5px solid var(--green3);
+    border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 16px;
     background: white; color: var(--text); outline: none; transition: border-color 0.2s;
   }
   #new-task-input:focus { border-color: var(--green1); }
@@ -285,30 +281,30 @@
 
   #add-btn {
     background: var(--green1); color: white; border: none; border-radius: 10px;
-    padding: 8px 12px; font-size: 18px; transition: background 0.2s, transform 0.15s;
+    padding: 9px 14px; font-size: 20px; transition: background 0.2s, transform 0.15s;
     flex-shrink: 0; line-height: 1; font-family: 'Nunito', sans-serif;
   }
   #add-btn:hover  { background: var(--green2); }
   #add-btn:active { transform: scale(0.93); }
 
-  .add-options { display: flex; gap: 6px; align-items: center; }
+  .add-options { display: flex; gap: 8px; align-items: center; }
   .add-options select {
-    flex: 1; padding: 5px 8px; border: 1.5px solid var(--green3);
-    border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 11px;
+    flex: 1; padding: 7px 10px; border: 1.5px solid var(--green3);
+    border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 14px;
     background: white; color: var(--text); outline: none;
   }
   .add-options select:focus { border-color: var(--green1); }
 
-  .footer-hint { text-align: center; font-size: 10px; color: var(--dust); padding-bottom: 2px; font-style: italic; }
+  .footer-hint { text-align: center; font-size: 12px; color: var(--dust); padding-bottom: 2px; font-style: italic; margin-top: 7px; }
 
   /* ── CONTEXT MENU ─────────────────────────────────── */
   #ctx-menu {
     position: fixed; background: var(--cream); border: 1.5px solid var(--green3);
     border-radius: 10px; box-shadow: 0 4px 20px var(--shadow);
-    z-index: 9999999; overflow: hidden; display: none; min-width: 160px;
+    z-index: 9999999; overflow: hidden; display: none; min-width: 170px;
   }
   .ctx-item {
-    padding: 9px 14px; font-size: 12px; font-family: 'Nunito', sans-serif;
+    padding: 11px 16px; font-size: 15px; font-family: 'Nunito', sans-serif;
     color: var(--text); display: flex; align-items: center; gap: 8px; font-weight: 500;
   }
   .ctx-item:hover { background: var(--green5); }
@@ -326,12 +322,11 @@
 </head>
 <body>
 
-<!-- TOGGLE TAB — outside panel, always visible -->
+<!-- TOGGLE TAB -->
 <div id="toggle-tab" data-tip="Alt+T">🌿</div>
 
 <!-- MAIN PANEL -->
 <div id="panel">
-
   <div id="header">
     <div class="header-top">
       <span class="leaf-deco">🍃</span>
@@ -345,23 +340,22 @@
     </div>
     <div class="progress-label" id="progress-label">0 / 0 complete</div>
     <div class="status-legend">
-      <div class="legend-dot"><div class="dot" style="background:#276237"></div>Complete</div>
-      <div class="legend-dot"><div class="dot" style="background:#1a4d7a"></div>Received</div>
-      <div class="legend-dot"><div class="dot" style="background:#5a2d82"></div>To Receive</div>
-      <div class="legend-dot"><div class="dot" style="background:#856404"></div>Pending</div>
-      <div class="legend-dot"><div class="dot" style="background:#721c24"></div>Cancelled</div>
+      <div class="legend-dot"><div class="dot" style="background:#3ca057"></div>Complete</div>
+      <div class="legend-dot"><div class="dot" style="background:#296da8"></div>Received</div>
+      <div class="legend-dot"><div class="dot" style="background:#8047b1"></div>To Receive</div>
+      <div class="legend-dot"><div class="dot" style="background:#e0b32a"></div>Pending</div>
+      <div class="legend-dot"><div class="dot" style="background:#b82c3a"></div>Cancelled</div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-<!-- TASK LIST -->
-<div id="task-list">
-  <div class="empty-state" id="empty-state">
-    <img src="totoro.png" alt="Totoro" class="totoro-icon">
-    No tasks yet.  Add one?
+  <div id="task-list">
+    <div class="empty-state" id="empty-state">
+      <img src="totoro.png" alt="Totoro" class="totoro-icon">
+      No tasks yet. Add one?
+    </div>
   </div>
-</div>
 
   <div class="divider"></div>
 
@@ -384,7 +378,7 @@
         <option value="cancelled">❌ Cancelled</option>
       </select>
     </div>
-    <div class="footer-hint" style="margin-top:6px">Alt+T to toggle · click badge to cycle status</div>
+    <div class="footer-hint">Alt+T to toggle · click badge to cycle status</div>
   </div>
 </div>
 
@@ -453,12 +447,12 @@ function makeTaskEl(t) {
     </div>`;
   div.querySelector('.status-badge').addEventListener('click', e => { e.stopPropagation(); cycleStatus(t.id); });
   div.querySelector('.del-btn').addEventListener('click',      e => { e.stopPropagation(); deleteTask(t.id); });
-  div.addEventListener('dragstart',    onDragStart);
-  div.addEventListener('dragover',     onDragOver);
-  div.addEventListener('dragleave',    onDragLeave);
-  div.addEventListener('drop',         onDrop);
-  div.addEventListener('dragend',      onDragEnd);
-  div.addEventListener('contextmenu',  e => { e.preventDefault(); ctxTaskId = t.id; showCtx(e.clientX, e.clientY); });
+  div.addEventListener('dragstart',   onDragStart);
+  div.addEventListener('dragover',    onDragOver);
+  div.addEventListener('dragleave',   onDragLeave);
+  div.addEventListener('drop',        onDrop);
+  div.addEventListener('dragend',     onDragEnd);
+  div.addEventListener('contextmenu', e => { e.preventDefault(); ctxTaskId = t.id; showCtx(e.clientX, e.clientY); });
   return div;
 }
 
@@ -532,8 +526,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('new-task-input').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
   document.getElementById('toggle-tab').addEventListener('click', togglePanel);
   document.addEventListener('keydown', e => { if (e.altKey && e.key === 't') { e.preventDefault(); togglePanel(); } });
-  document.addEventListener('click',   ()  => hideCtx());
-  document.addEventListener('keydown', e  => { if (e.key === 'Escape') hideCtx(); });
+  document.addEventListener('click',   () => hideCtx());
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hideCtx(); });
 
   document.getElementById('ctx-complete').addEventListener('click',   () => setStatus(ctxTaskId, 'complete'));
   document.getElementById('ctx-received').addEventListener('click',   () => setStatus(ctxTaskId, 'received'));
