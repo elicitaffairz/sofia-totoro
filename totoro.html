@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Totoro Tasks</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:    #f5f0e8;
+    --cream2:   #ede6d6;
+    --green1:   #4a7c59;
+    --green2:   #6a9e76;
+    --green3:   #a8c5a0;
+    --green4:   #d4e8cc;
+    --green5:   #eaf3e6;
+    --bark:     #7a5c3a;
+    --dust:     #c8b89a;
+    --shadow:   rgba(74,124,89,0.18);
+    --text:     #3a3028;
+    --text2:    #6b5a45;
+    --panel-w:  320px;
+    --tab-w:    36px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  /* Totoro cursor applies everywhere in the app */
+  body, body * {
+    cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHXklEQVR4nKVVW2xU1xVd+5x75+0Zz/iBwRjbweB4eIQw5aHyGNKmkUubfFCNi5SPRqkqmkoVUn6iKqqG26oIKVJVQZqSSuWjLU3ikaoK8RNVUUMFgSgQAsUTjDE2fhF7xjMee973nnP6YdNQMuNHu3+utPc5a6+7z95rE1ZuFA6HOQBcuHBAAoZ8NLbwVf8D7nIsyip5QyHo4XBYqxCiCr6VHXjsrAoGwx6n0/08Sb6bafrXAAoQ0CSk1S/M8t3k1Be/Gf3i+jUsswrLJcAAqF2h74Shuc4IIdo5YwCQB5AvlYpXZ9KJv+YKxfuqWB7SdNJB5C6r0oNU6u4EAFkNuFLZKpnauvVbrkIx38U18Wef3yYGBiZuMVWqKZRNvbHRcUk6bIXmWmufUNrsyIhp6joEgXmWAl7xExw69Ezr6obVsY+v3Tl89Wp+DGD+F57ZWTuTnQq0b7S9WygUX3r/g8Gh557bOhqLxSSWeIrlVgBKKRw7doyNjvabwsKazpbOQqn7cmcxlXPdG/uofnX9Kr/bvS7r8jruZzL9w8HgYbZU8hURICIAkJFIZNLvpUt19bY3mu83hxIq0WqDM8MliJS6n5ml5PwNY3m4y80fjUZpdHTUzeTceYfDsYcx4iQZAAhLCNO0rLLLZfPmC8XbFuibZ868+yAaBRlG9QYE5rt7SeuNRJhhGNIqJH+79anQ/l8cP9m/dl1HMlvImgWzlM8W8jm701l++cirt/aGn91oFfNno9EoAdElsZckEIlEeE8sJg5/74VdIH5wJpMZGRkZdJdLeQcRsyxBedOUKcuyzOnkZE0uOzfFNX3z1NTw04ZhyGi0sng9tKV6gILBoALAtmzZ+HOusbnZ2XTzyV//ihHTuMvpBCM47TZ3vbBM0fuXP9jKpsjruj5ezBW+D+BaPB5f9JkXDfb29vKenh7x+9+d+NGqOt9JIYTQdc1ZKJTYrfgAEskUbLoOy0KccZYmUk9algXOyGVZYq40le04c+7c3EKeihNRtTzRaJRFIhF56vjxOr/X9QZjZNd1zW1ZFlPAdFfn+oGG+kCfJdVbivDp9MxcP6DySsnJkiluMI0rrcHz/DzW/PJaEYFNmzYREanaNY6f+X1enxSSyiVz3O1xnX/6qQ3Dz+7frr/yw0NrDnbvpQ3rWy/qGrbY7XqLpvGgxmknZ1TDSB2ZRztQdRIqEohGo6ynp0e8+eYvW+2c/3hmdjZdtsQ9rvN/MiV2NzX4QkMjE20XL39W29Ha9EprS91r65qbCplMrqQUJECklHJxru15+cVI52LNWNF54MC83+92HwExLZPJDQb8nviu0JOR9ra19fl8Sba3rVbhvduxqqEOXZ3t7d8Ib98cCPhucM4YYwQppWm365wc2r551A9XQuCYAABd49+2THNCs9nSW4Lt2+r8Xq0u4JVKSTY2PkU2m0a37wzJK5/8S9jsWiDY2Vo3PjH1EYHAGNMBSA7avIC6vCdQShERqRMnXvMRQ1vJNLON9b7AjZt31ly8/Bk0zti94QkMDI4glZ5FY6OfHdgb4koqaQlr/b4929bUeDwX8/lygoiYxugJAIjH4xWnoIIOHCMAKuCt6dI4r5VC3XTabWhsqGEuhwPFUhmdG1qxdVMHSmUTnDNwzjGXzbP21mblcjvaisVS4PP+kfjQyMQDkYUTABb0ZOkKxGKbCAB0rjdxzoQl1GSNx8k3PNECr9f9n24ulsoAANO0YFkCdrsO07Iom80pIaR3R6hr99d3bBHZXD7T2xvhhmFUnISvEIj09SkAaGj0D49PJFRqJg23x+UulU1Y4kuMhe0IIgIRwDkDEcAYJ6WUKBZLqlgybRpnzr6+YFXB+woBMgwFAH//8NLwx5/GTzkczjEhpKRFRZNgWRYeEVZijMg0y1lJKBmGIVBFdStNgQKARCJJl68Mvu2v9aTSqdmikBJKqQog8ypbKJa+BFCKpFBIpWc1peQkAFVNDasuo7Nnz2eIKC2tQ3pyeqZGCDFn17Ua0xKKFuqvlAJjDGXTxOxcDowxSKmk3WZjQsjxu4Nj0DXterUc1SoAAOjp6SEAZHe4z2XzxabBoQfv2+w2xRgjKZUEAM45GCOMjSdQLpsKUJJzxnSbbt7sG/w8lyu02J11fwMAw7ggVkQgFouJ3t4Ie/Glo9c0zq/fH50K3R4Yfc/jcWU9bidTSiGbK8jBoTExnc5A1zVyuZzMbrcnr98Y+KCvb3C/rttOnT59eioSiXBU2YaLruOH+u3z6as621ZdSabSvkRy+uaObV2Nuk1bq6DcBIKUAlA0k57NDn9yNT4zPT0TUkTvvPX2n45EIhEei8Uq/v2SBB6SMAxDvv76qy2FbM6YnEw02XTuaGgMiMYGf8bncY1m5gq7JpOpuWQixXVNa7Qs+Y8zf3zv6MJdVe3vl22PbrJQ6LuuaPQnnu7ubu9D39q1wcDBgwebjh79QW1Hx05vQzDs+Wl3t/3/Svq4LeyI//IRUZXRXL6t9PLj51UV/6OxRe3fbWJcuKPxxkMAAAAASUVORK5CYII=') 16 16, auto !important;
+  }
+
+  /* ── PANEL ─────────────────────────────────────── */
+  #panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--panel-w);
+    background: var(--cream);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 4px 0 32px var(--shadow), 2px 0 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999999;
+    border-right: 2px solid var(--green3);
+    overflow: hidden;
+  }
+
+  #panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 10% 0%, rgba(168,197,160,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 100%, rgba(168,197,160,0.15) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #panel.collapsed {
+    transform: translateX(calc(-1 * var(--panel-w)));
+  }
+
+  /* ── TAB TOGGLE ────────────────────────────────── */
+  #toggle-tab {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--tab-w);
+    height: 80px;
+    background: var(--green1);
+    border-radius: 0 12px 12px 0;
+    border: 2px solid var(--green2);
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--cream);
+    transition: background 0.2s, left 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 9999999;
+    user-select: none;
+  }
+  #toggle-tab:hover { background: var(--green2); }
+
+  /* When panel is open, push tab to the right edge of the panel */
+  #toggle-tab.open {
+    left: calc(var(--panel-w) - 2px);
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  #header {
+    padding: 18px 18px 10px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .app-title {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green1);
+    line-height: 1;
+  }
+  .app-subtitle {
+    font-size: 11px;
+    color: var(--text2);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .leaf-deco { font-size: 22px; }
+
+  /* ── PROGRESS BAR ────────────────────────────────── */
+  .progress-wrap {
+    background: var(--green4);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green1), var(--green2));
+    border-radius: 20px;
+    transition: width 0.5s ease;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: var(--text2);
+    text-align: right;
+    font-weight: 600;
+  }
+  .totoro-icon {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  /* ── STATUS LEGEND ───────────────────────────────── */
+  .status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 10px;
+  }
+  .legend-dot {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: var(--text2);
+    font-weight: 600;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── DIVIDER ─────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green3), transparent);
+    margin: 8px 0;
+    flex-shrink: 0;
+  }
+
+  /* ── TASK LIST ───────────────────────────────────── */
+  #task-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 10px 8px;
+    position: relative;
+    z-index: 1;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green3) transparent;
+  }
+  #task-list::-webkit-scrollbar { width: 4px; }
+  #task-list::-webkit-scrollbar-thumb { background: var(--green3); border-radius: 4px; }
+
+  .empty-state {
+    text-align: center;
+    padding: 30px 10px;
+    color: var(--dust);
+    font-family: 'Caveat', cursive;
+    font-size: 25px;
+  }
+  .empty-state span { display: block; font-size: 36px; margin-bottom: 6px; }
+
+  /* ── TASK ITEM ───────────────────────────────────── */
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 9px 10px;
+    margin: 4px 0;
+    background: var(--green5);
+    border-radius: 12px;
+    border-left: 4px solid var(--green3);
+    transition: all 0.25s ease;
+    position: relative;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .task-item:hover { background: var(--green4); box-shadow: 0 2px 8px var(--shadow); }
+  .task-item.dragging  { opacity: 0.4; transform: scale(0.97); }
+  .task-item.drag-over { border-top: 2px dashed var(--green1); }
+
+  .task-item[data-priority="high"]   { border-left-color: #f03131; }
+  .task-item[data-priority="medium"] { border-left-color: #ffd06a; }
+  .task-item[data-priority="low"]    { border-left-color: var(--green2); }
+
+  .drag-handle { color: var(--dust); font-size: 14px; padding-top: 1px; flex-shrink: 0; user-select: none; }
+  .task-body   { flex: 1; min-width: 0; }
+
+  .task-text {
+    font-size: 13px; color: var(--text); font-weight: 500;
+    line-height: 1.4; word-break: break-word; margin-bottom: 5px;
+  }
+  .task-text.done-text { text-decoration: line-through; color: var(--dust); }
+
+  .task-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+
+  /* ── STATUS BADGE ─────────────────────────────────── */
+  .status-badge {
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 20px; transition: opacity 0.2s;
+    white-space: nowrap; user-select: none; letter-spacing: 0.3px;
+  }
+  .status-badge:hover { opacity: 0.75; }
+
+  .status-complete   { background: #d4edda; color: #3ca057; }
+  .status-received   { background: #cce5ff; color: #296da8; }
+  .status-to-receive { background: #e2d5f0; color: #8047b1; }
+  .status-pending    { background: #fff3cd; color: #e0b32a; }
+  .status-cancelled  { background: #f8d7da; color: #b82c3a; }
+
+  /* ── PRIORITY DOT ─────────────────────────────────── */
+  .priority-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .priority-dot.high   { background: #e05c5c; }
+  .priority-dot.medium { background: #e0a830; }
+  .priority-dot.low    { background: var(--green2); }
+
+  /* ── TASK ACTIONS ─────────────────────────────────── */
+  .task-actions { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+  .icon-btn {
+    background: none; border: none; font-size: 13px; padding: 2px;
+    border-radius: 4px; opacity: 0.45; transition: opacity 0.2s, background 0.2s; line-height: 1;
+  }
+  .icon-btn:hover { opacity: 1; background: var(--cream2); }
+
+  /* ── ADD TASK AREA ────────────────────────────────── */
+  #add-area {
+    padding: 10px 14px 14px; position: relative; z-index: 1;
+    flex-shrink: 0; background: var(--cream);
+  }
+  .add-input-row { display: flex; gap: 6px; margin-bottom: 6px; }
+
+  #new-task-input {
+    flex: 1; padding: 8px 12px; border: 1.5px solid var(--green3);
+    border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 13px;
+    background: white; color: var(--text); outline: none; transition: border-color 0.2s;
+  }
+  #new-task-input:focus { border-color: var(--green1); }
+  #new-task-input::placeholder { color: var(--dust); }
+
+  #add-btn {
+    background: var(--green1); color: white; border: none; border-radius: 10px;
+    padding: 8px 12px; font-size: 18px; transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0; line-height: 1; font-family: 'Nunito', sans-serif;
+  }
+  #add-btn:hover  { background: var(--green2); }
+  #add-btn:active { transform: scale(0.93); }
+
+  .add-options { display: flex; gap: 6px; align-items: center; }
+  .add-options select {
+    flex: 1; padding: 5px 8px; border: 1.5px solid var(--green3);
+    border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 11px;
+    background: white; color: var(--text); outline: none;
+  }
+  .add-options select:focus { border-color: var(--green1); }
+
+  .footer-hint { text-align: center; font-size: 10px; color: var(--dust); padding-bottom: 2px; font-style: italic; }
+
+  /* ── CONTEXT MENU ─────────────────────────────────── */
+  #ctx-menu {
+    position: fixed; background: var(--cream); border: 1.5px solid var(--green3);
+    border-radius: 10px; box-shadow: 0 4px 20px var(--shadow);
+    z-index: 9999999; overflow: hidden; display: none; min-width: 160px;
+  }
+  .ctx-item {
+    padding: 9px 14px; font-size: 12px; font-family: 'Nunito', sans-serif;
+    color: var(--text); display: flex; align-items: center; gap: 8px; font-weight: 500;
+  }
+  .ctx-item:hover { background: var(--green5); }
+  .ctx-sep { height: 1px; background: var(--green4); }
+
+  /* ── TOOLTIP ──────────────────────────────────────── */
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip); position: absolute; bottom: calc(100% + 4px);
+    left: 50%; transform: translateX(-50%); background: var(--bark);
+    color: var(--cream); font-size: 10px; padding: 3px 7px; border-radius: 6px;
+    white-space: nowrap; pointer-events: none; z-index: 99; font-family: 'Nunito', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOGGLE TAB — outside panel, always visible -->
+<div id="toggle-tab" data-tip="Alt+T">🌿</div>
+
+<!-- MAIN PANEL -->
+<div id="panel">
+
+  <div id="header">
+    <div class="header-top">
+      <span class="leaf-deco">🍃</span>
+      <div>
+        <div class="app-title">Today's Tasks</div>
+        <div class="app-subtitle" id="date-label"></div>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progress-label">0 / 0 complete</div>
+    <div class="status-legend">
+      <div class="legend-dot"><div class="dot" style="background:#276237"></div>Complete</div>
+      <div class="legend-dot"><div class="dot" style="background:#1a4d7a"></div>Received</div>
+      <div class="legend-dot"><div class="dot" style="background:#5a2d82"></div>To Receive</div>
+      <div class="legend-dot"><div class="dot" style="background:#856404"></div>Pending</div>
+      <div class="legend-dot"><div class="dot" style="background:#721c24"></div>Cancelled</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+<!-- TASK LIST -->
+<div id="task-list">
+  <div class="empty-state" id="empty-state">
+    <img src="totoro.png" alt="Totoro" class="totoro-icon">
+    No tasks yet.  Add one?
+  </div>
+</div>
+
+  <div class="divider"></div>
+
+  <div id="add-area">
+    <div class="add-input-row">
+      <input id="new-task-input" type="text" placeholder="Add a new task…" maxlength="120" autocomplete="off"/>
+      <button id="add-btn" data-tip="Add task">＋</button>
+    </div>
+    <div class="add-options">
+      <select id="priority-select">
+        <option value="high">🔴 High</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="low">🟢 Low</option>
+      </select>
+      <select id="status-select">
+        <option value="pending" selected>⏳ Pending</option>
+        <option value="to-receive">📦 To Receive</option>
+        <option value="received">✅ Received</option>
+        <option value="complete">🌟 Complete</option>
+        <option value="cancelled">❌ Cancelled</option>
+      </select>
+    </div>
+    <div class="footer-hint" style="margin-top:6px">Alt+T to toggle · click badge to cycle status</div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div id="ctx-menu">
+  <div class="ctx-item" id="ctx-complete">🌟 Mark Complete</div>
+  <div class="ctx-item" id="ctx-received">📬 Mark Received</div>
+  <div class="ctx-item" id="ctx-to-receive">📦 Mark To Receive</div>
+  <div class="ctx-item" id="ctx-pending">⏳ Mark Pending</div>
+  <div class="ctx-item" id="ctx-cancelled">❌ Mark Cancelled</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" id="ctx-high">🔴 High Priority</div>
+  <div class="ctx-item" id="ctx-medium">🟡 Medium Priority</div>
+  <div class="ctx-item" id="ctx-low">🟢 Low Priority</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" id="ctx-delete" style="color:#c0392b">🗑 Delete Task</div>
+</div>
+
+<script>
+let tasks     = JSON.parse(localStorage.getItem('totoro-tasks')     || '[]');
+let collapsed = JSON.parse(localStorage.getItem('totoro-collapsed') || 'false');
+let dragSrc = null, ctxTaskId = null;
+
+const STATUS_CYCLE = ['pending','to-receive','received','complete','cancelled'];
+const STATUS_LABELS = {
+  'complete':   { label: 'Complete',   cls: 'status-complete' },
+  'received':   { label: 'Received',   cls: 'status-received' },
+  'to-receive': { label: 'To Receive', cls: 'status-to-receive' },
+  'pending':    { label: 'Pending',    cls: 'status-pending' },
+  'cancelled':  { label: 'Cancelled',  cls: 'status-cancelled' },
+};
+
+function save() {
+  localStorage.setItem('totoro-tasks',     JSON.stringify(tasks));
+  localStorage.setItem('totoro-collapsed', JSON.stringify(collapsed));
+}
+
+function render() {
+  const list = document.getElementById('task-list');
+  list.querySelectorAll('.task-item').forEach(n => n.remove());
+  const empty = document.getElementById('empty-state');
+  if (tasks.length === 0) { empty.style.display = 'block'; }
+  else { empty.style.display = 'none'; tasks.forEach(t => list.appendChild(makeTaskEl(t))); }
+  updateProgress();
+}
+
+function makeTaskEl(t) {
+  const div = document.createElement('div');
+  div.className = 'task-item';
+  div.dataset.id = t.id;
+  div.dataset.priority = t.priority;
+  div.draggable = true;
+  const isDone = t.status === 'complete' || t.status === 'cancelled';
+  const st = STATUS_LABELS[t.status] || STATUS_LABELS['pending'];
+  div.innerHTML = `
+    <div class="drag-handle">⠿</div>
+    <div class="priority-dot ${t.priority}"></div>
+    <div class="task-body">
+      <div class="task-text ${isDone ? 'done-text' : ''}">${escHtml(t.text)}</div>
+      <div class="task-meta">
+        <span class="status-badge ${st.cls}" data-id="${t.id}">${st.label}</span>
+      </div>
+    </div>
+    <div class="task-actions">
+      <button class="icon-btn del-btn" data-id="${t.id}" title="Delete">✕</button>
+    </div>`;
+  div.querySelector('.status-badge').addEventListener('click', e => { e.stopPropagation(); cycleStatus(t.id); });
+  div.querySelector('.del-btn').addEventListener('click',      e => { e.stopPropagation(); deleteTask(t.id); });
+  div.addEventListener('dragstart',    onDragStart);
+  div.addEventListener('dragover',     onDragOver);
+  div.addEventListener('dragleave',    onDragLeave);
+  div.addEventListener('drop',         onDrop);
+  div.addEventListener('dragend',      onDragEnd);
+  div.addEventListener('contextmenu',  e => { e.preventDefault(); ctxTaskId = t.id; showCtx(e.clientX, e.clientY); });
+  return div;
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function updateProgress() {
+  const total = tasks.length;
+  const done  = tasks.filter(t => t.status === 'complete').length;
+  const pct   = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} / ${total} complete`;
+}
+
+function addTask() {
+  const input = document.getElementById('new-task-input');
+  const text = input.value.trim();
+  if (!text) return;
+  tasks.push({ id: Date.now().toString(), text, priority: document.getElementById('priority-select').value, status: document.getElementById('status-select').value });
+  input.value = '';
+  save(); render();
+}
+
+function deleteTask(id)  { tasks = tasks.filter(t => t.id !== id); save(); render(); }
+
+function cycleStatus(id) {
+  const t = tasks.find(t => t.id === id); if (!t) return;
+  t.status = STATUS_CYCLE[(STATUS_CYCLE.indexOf(t.status) + 1) % STATUS_CYCLE.length];
+  save(); render();
+}
+
+function setStatus(id, s)   { const t = tasks.find(t => t.id === id); if (t) { t.status   = s; save(); render(); } }
+function setPriority(id, p) { const t = tasks.find(t => t.id === id); if (t) { t.priority = p; save(); render(); } }
+
+function onDragStart(e) { dragSrc = this; this.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+function onDragOver(e)  { e.preventDefault(); if (this !== dragSrc) this.classList.add('drag-over'); }
+function onDragLeave()  { this.classList.remove('drag-over'); }
+function onDrop(e) {
+  e.preventDefault(); this.classList.remove('drag-over'); if (this === dragSrc) return;
+  const si = tasks.findIndex(t => t.id === dragSrc.dataset.id);
+  const di = tasks.findIndex(t => t.id === this.dataset.id);
+  const [m] = tasks.splice(si, 1); tasks.splice(di, 0, m);
+  save(); render();
+}
+function onDragEnd() { document.querySelectorAll('.task-item').forEach(el => el.classList.remove('dragging','drag-over')); }
+
+function togglePanel() {
+  collapsed = !collapsed;
+  document.getElementById('panel').classList.toggle('collapsed', collapsed);
+  document.getElementById('toggle-tab').classList.toggle('open', !collapsed);
+  save();
+}
+
+function showCtx(x, y) {
+  const m = document.getElementById('ctx-menu');
+  m.style.display = 'block';
+  m.style.left = Math.min(x, window.innerWidth  - m.offsetWidth  - 8) + 'px';
+  m.style.top  = Math.min(y, window.innerHeight - m.offsetHeight - 8) + 'px';
+}
+function hideCtx() { document.getElementById('ctx-menu').style.display = 'none'; }
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('date-label').textContent =
+    new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+
+  if (collapsed) { document.getElementById('panel').classList.add('collapsed'); }
+  else           { document.getElementById('toggle-tab').classList.add('open'); }
+
+  render();
+
+  document.getElementById('add-btn').addEventListener('click', addTask);
+  document.getElementById('new-task-input').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
+  document.getElementById('toggle-tab').addEventListener('click', togglePanel);
+  document.addEventListener('keydown', e => { if (e.altKey && e.key === 't') { e.preventDefault(); togglePanel(); } });
+  document.addEventListener('click',   ()  => hideCtx());
+  document.addEventListener('keydown', e  => { if (e.key === 'Escape') hideCtx(); });
+
+  document.getElementById('ctx-complete').addEventListener('click',   () => setStatus(ctxTaskId, 'complete'));
+  document.getElementById('ctx-received').addEventListener('click',   () => setStatus(ctxTaskId, 'received'));
+  document.getElementById('ctx-to-receive').addEventListener('click', () => setStatus(ctxTaskId, 'to-receive'));
+  document.getElementById('ctx-pending').addEventListener('click',    () => setStatus(ctxTaskId, 'pending'));
+  document.getElementById('ctx-cancelled').addEventListener('click',  () => setStatus(ctxTaskId, 'cancelled'));
+  document.getElementById('ctx-high').addEventListener('click',       () => setPriority(ctxTaskId, 'high'));
+  document.getElementById('ctx-medium').addEventListener('click',     () => setPriority(ctxTaskId, 'medium'));
+  document.getElementById('ctx-low').addEventListener('click',        () => setPriority(ctxTaskId, 'low'));
+  document.getElementById('ctx-delete').addEventListener('click',     () => deleteTask(ctxTaskId));
+});
+</script>
+</body>
+</html>
